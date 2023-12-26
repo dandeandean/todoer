@@ -19,6 +19,17 @@ public:
     void finish(void) {done = true; }
 };
 
+void print_menu(void) {
+    std::cout << " /$$$$$$$$ /$$$$$$  /$$$$$$$   /$$$$$$                         \n";
+    std::cout << "|__  $$__//$$__  $$| $$__  $$ /$$__  $$                        \n";
+    std::cout << "   | $$  | $$  \\ $$| $$  \\ $$| $$  \\ $$  /$$$$$$   /$$$$$$  \n" ;
+    std::cout << "   | $$  | $$  | $$| $$  | $$| $$  | $$ /$$__  $$ /$$__  $$    \n";
+    std::cout << "   | $$  | $$  | $$| $$  | $$| $$  | $$| $$$$$$$$| $$  \\__/   \n";
+    std::cout << "   | $$  | $$  | $$| $$  | $$| $$  | $$| $$_____/| $$          \n";
+    std::cout << "   | $$  |  $$$$$$/| $$$$$$$/| $$$$$$/|  $$$$$$$| $$           \n";
+    std::cout << "   |__/   \\______/ |_______/  \\______/  \\_______/|__/       \n";
+    std::cout << "_______________________________________________________________\n";
+}
 
 int main( void ) {
     std::list<Task> tasks;
@@ -43,7 +54,7 @@ int main( void ) {
                 << "\n";
         }
         if (tasks.empty()){
-            std:: cout << "Looks like you're all done!\n";
+            print_menu();
         }
         std::cout << "What's next?\n" 
             << "[a]dd\n"
@@ -52,9 +63,6 @@ int main( void ) {
             << "[q]uit\n->";
         std::cin >> input_option;
         switch (input_option){
-            case ('q'):
-                // TODO: This is bad
-                break;
 
             case ('c'):
                 std::cout << "Enter ID to complete \n\t->";
@@ -83,7 +91,7 @@ int main( void ) {
                 std::cin >> id_buf;
                 for (it=tasks.begin(); it != tasks.end(); it ++ ) {
                     if (it->getId() == id_buf){
-                        // tasks.remove(*it);
+                        tasks.erase(it);
                         break;
                     }
                 }
