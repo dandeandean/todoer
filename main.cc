@@ -32,7 +32,7 @@ int main( void ) {
 
     Task new_task;
     // Gamer Loop
-    while (true) {
+    while (input_option != 'q') {
         system("clear");
         std::cout << "TODOer (" << VERSION <<") | A TODO Manager... \nTASKS:\n\n";
         for (it=tasks.begin(); it != tasks.end(); it ++ ) {
