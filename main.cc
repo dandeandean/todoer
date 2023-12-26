@@ -19,7 +19,8 @@ public:
     void finish(void) {done = true; }
 };
 
-void print_menu(void) {
+void show_menu(std::string version) {
+    std::cout << "TODOer (" << version <<") | A TODO Manager... \nTASKS:\n\n";
     std::cout << " /$$$$$$$$ /$$$$$$  /$$$$$$$   /$$$$$$                         \n";
     std::cout << "|__  $$__//$$__  $$| $$__  $$ /$$__  $$                        \n";
     std::cout << "   | $$  | $$  \\ $$| $$  \\ $$| $$  \\ $$  /$$$$$$   /$$$$$$  \n" ;
@@ -29,6 +30,20 @@ void print_menu(void) {
     std::cout << "   | $$  |  $$$$$$/| $$$$$$$/| $$$$$$/|  $$$$$$$| $$           \n";
     std::cout << "   |__/   \\______/ |_______/  \\______/  \\_______/|__/       \n";
     std::cout << "_______________________________________________________________\n";
+}
+
+void show_options(void) {
+
+}
+void show_tasks( std::__1::list<Task> tasks ){
+        std::list<Task>::iterator it;
+        for (it=tasks.begin(); it != tasks.end(); it ++ ) {
+            std::string doneness = it->isDone()? "Done" : "TODO";
+            std::cout << it->getId() 
+                << " | " << it->getDescription() 
+                << " | " << doneness 
+                << "\n";
+        }
 }
 
 int main( void ) {
@@ -45,16 +60,10 @@ int main( void ) {
     // Gamer Loop
     while (input_option != 'q') {
         system("clear");
-        std::cout << "TODOer (" << VERSION <<") | A TODO Manager... \nTASKS:\n\n";
-        for (it=tasks.begin(); it != tasks.end(); it ++ ) {
-            std::string doneness = it->isDone()? "Done" : "TODO";
-            std::cout << it->getId() 
-                << " | " << it->getDescription() 
-                << " | " << doneness 
-                << "\n";
-        }
+        show_tasks(tasks);
+
         if (tasks.empty()){
-            print_menu();
+            show_menu(VERSION);
         }
         std::cout << "What's next?\n" 
             << "[a]dd\n"
