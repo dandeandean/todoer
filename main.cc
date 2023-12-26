@@ -26,7 +26,7 @@ int main( void ) {
     tasks.clear();
     std::string VERSION = "v1.0";
     char input_option;
-    int completed_id;
+    int id_buf;
     std::string desc_buffer;
 
 
@@ -49,7 +49,7 @@ int main( void ) {
             << "[a]dd\n"
             << "[c]omplete\n"
             << "[r]emove\n"
-            << "[q]uit\n ->";
+            << "[q]uit\n->";
         std::cin >> input_option;
         switch (input_option){
             case ('q'):
@@ -57,10 +57,11 @@ int main( void ) {
                 break;
 
             case ('c'):
-                std::cout << "Enter ID to complete \n->";
-                std::cin >> completed_id;
+                std::cout << "Enter ID to complete \n\t->";
+                std::cin.clear();
+                std::cin >> id_buf;
                 for (it=tasks.begin(); it != tasks.end(); it ++ ) {
-                    if (it->getId() == completed_id){
+                    if (it->getId() == id_buf){
                         it->finish();
                         break;
                     }
@@ -68,7 +69,7 @@ int main( void ) {
                 break;
 
             case ('a'):
-                std::cout << "Please input the description \n->";
+                std::cout << "Please input the description \n\t->";
                 std::cin.clear();
                 std::cin.ignore();
                 std::getline(std::cin, desc_buffer);
@@ -77,6 +78,15 @@ int main( void ) {
                 break;
 
             case ('r'):
+                std::cout << "Enter ID to delete \n\t->";
+                std::cin.clear();
+                std::cin >> id_buf;
+                for (it=tasks.begin(); it != tasks.end(); it ++ ) {
+                    if (it->getId() == id_buf){
+                        // tasks.remove(*it);
+                        break;
+                    }
+                }
                 break;
 
             default: 
