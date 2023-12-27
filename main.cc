@@ -19,7 +19,7 @@ public:
     void finish(void) {done = true; }
 };
 
-void show_menu(std::string version) {
+void print_menu(std::string version) {
     std::cout << "TODOer (" << version <<") | A TODO Manager... \nTASKS:\n\n";
     std::cout << " /$$$$$$$$ /$$$$$$  /$$$$$$$   /$$$$$$                         \n";
     std::cout << "|__  $$__//$$__  $$| $$__  $$ /$$__  $$                        \n";
@@ -63,13 +63,14 @@ int main( void ) {
         show_tasks(tasks);
 
         if (tasks.empty()){
-            show_menu(VERSION);
+            print_menu(VERSION);
         }
         std::cout << "What's next?\n" 
             << "[a]dd\n"
             << "[c]omplete\n"
             << "[r]emove\n"
             << "[q]uit\n->";
+        std::cin.clear(); // This is needed to fix getting too much input
         std::cin >> input_option;
         switch (input_option){
 
